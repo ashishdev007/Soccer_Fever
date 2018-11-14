@@ -83,6 +83,14 @@ public class LeagueStats{
         public void setPoints(int points){
             this.points += points;
         }
+
+        @Override
+        public boolean equals(Object obj){
+            if (!(obj instanceof Team))
+                return false;
+
+            return ((Team) obj).name.equals(this.name);
+        }
     }
 }
 
