@@ -1,4 +1,27 @@
-public class LeagueStats {
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class LeagueStats{
+
+    private Set<Team> teams;
+
+    public void LeagueStats(String csvFile) throws FileNotFoundException {
+
+        this.teams = new HashSet<>();
+        File myFile = new File(csvFile);
+        Scanner sc = new Scanner(myFile);
+
+        while (sc.hasNextLine()){
+            String data = sc.nextLine();
+            String[] analyze = data.split(",");
+
+
+        }
+
+    }
 
     private class Team{
         private String name;
@@ -57,7 +80,7 @@ public class LeagueStats {
             return points;
         }
 
-        public int setPoints(int points){
+        public void setPoints(int points){
             this.points += points;
         }
     }
