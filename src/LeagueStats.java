@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -18,10 +19,36 @@ public class LeagueStats{
             String data = sc.nextLine();
             String[] analyze = data.split(",");
 
+            if (!this.teams.contains(new Team(analyze[0]))){
+                teams.add(new Team(analyze[0]));
+            }
+            if (!this.teams.contains(new Team(analyze[1]))){
+                teams.add(new Team(analyze[1]));
+            }
+
+            Team homeTeam;
+            Team awayTeam;
+
+            Iterator<Team> iter = teams.iterator();
+            while (iter.hasNext()){
+                Team temp = iter.next();
+                if (temp.equals(new Team(analyze[0])))
+                    homeTeam = temp;
+
+                else if(temp.equals(new Team(analyze[1])))
+                    awayTeam = temp;
+            }
+
+
 
         }
 
     }
+
+    public void updateTeam(){
+
+    }
+
 
     private class Team{
         private String name;
