@@ -45,7 +45,7 @@ public class LeagueStats{
 
     }
 
-    public void updateTeam(){
+    public void updateTeam(Team homeTeam){
 
     }
 
