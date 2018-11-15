@@ -24,15 +24,25 @@ public class LeagueStats{
             }
 
             updateTeam(analyze[0], analyze[2], analyze[3]);
-
-
+            updateTeam(analyze[1], analyze[3], analyze[2]);
 
         }
 
     }
 
     public void updateTeam(String homeTeam, String goalsScored, String goalsAllowed){
+        Team team = teams.get(homeTeam);
+        int scored = Integer.parseInt(goalsScored);
+        int allowed = Integer.parseInt(goalsAllowed);
 
+        team.addGoalsScored(scored);
+        team.addGoalsAllowed(allowed);
+
+        if (scored > allowed){
+            team.addPoints(3);
+        }else if (scored == allowed){
+            team.addPoints(1);
+        }
     }
 
 
@@ -93,7 +103,7 @@ public class LeagueStats{
             return points;
         }
 
-        public void setPoints(int points){
+        public void addPoints(int points){
             this.points += points;
         }
 
