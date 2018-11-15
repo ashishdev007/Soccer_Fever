@@ -1,17 +1,14 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class LeagueStats{
 
-    private Set<Team> teams;
+    private Map<String, Team> teams;
 
     public void LeagueStats(String csvFile) throws FileNotFoundException {
 
-        this.teams = new HashSet<>();
+        this.teams = new HashMap<>();
         File myFile = new File(csvFile);
         Scanner sc = new Scanner(myFile);
 
@@ -19,25 +16,14 @@ public class LeagueStats{
             String data = sc.nextLine();
             String[] analyze = data.split(",");
 
-            if (!this.teams.contains(new Team(analyze[0]))){
-                teams.add(new Team(analyze[0]));
+            if (!this.teams.containsKey(analyze[0])){
+                teams.put(analyze[0],new Team(analyze[0]));
             }
-            if (!this.teams.contains(new Team(analyze[1]))){
-                teams.add(new Team(analyze[1]));
+            if (!this.teams.containsKey(analyze[1])){
+                teams.put(analyze[1], new Team(analyze[1]));
             }
 
-            Team homeTeam;
-            Team awayTeam;
-
-            Iterator<Team> iter = teams.iterator();
-            while (iter.hasNext()){
-                Team temp = iter.next();
-                if (temp.equals(new Team(analyze[0])))
-                    homeTeam = temp;
-
-                else if(temp.equals(new Team(analyze[1])))
-                    awayTeam = temp;
-            }
+            updateTeam(analyze[0], analyze[2], analyze[3]);
 
 
 
@@ -45,7 +31,7 @@ public class LeagueStats{
 
     }
 
-    public void updateTeam(Team homeTeam){
+    public void updateTeam(String homeTeam, String goalsScored, String goalsAllowed){
 
     }
 
